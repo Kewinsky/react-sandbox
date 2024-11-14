@@ -1,0 +1,25 @@
+.product-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.products-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px 50px;
+}
+
+.product-tile {
+  text-align: center;
+}
+
+.product-image {
+  height: 150px;
+  width: auto;
+}
+
+.load-more-btn {
+  margin-top: 20px;
+  padding: 10px;
+  align-self: center;
+}

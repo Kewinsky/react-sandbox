@@ -1,0 +1,14 @@
+.acc-element {
+  padding: 10px 20px;
+  border: 1px solid grey;
+  width: 200px;
+}
+
+.dupa {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dupka {
+  margin: 0;
+}

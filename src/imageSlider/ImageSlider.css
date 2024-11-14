@@ -1,0 +1,16 @@
+.sld-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.sld-image {
+  width: 100%;
+  height: auto;
+  max-width: 600px;
+  border-radius: 8px;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}

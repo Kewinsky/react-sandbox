@@ -1,0 +1,39 @@
+.notes-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.notes-addBtn {
+  margin-bottom: 50px;
+}
+
+.notes-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px 50px;
+}
+.notes-note {
+  display: inline-grid;
+}
+
+.notes-buttons {
+  display: flex;
+  justify-content: end;
+  font-size: 20px;
+}
+
+.notes-addBtn {
+  font-size: 30px;
+}
+
+.notes-textarea {
+  width: 300px;
+  height: 300px;
+  resize: none;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  padding: 15px;
+  font-size: 20px;
+}

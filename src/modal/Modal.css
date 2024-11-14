@@ -1,0 +1,42 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  color: black;
+  background-color: rgb(214, 214, 214);
+  min-height: 150px;
+  width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.modal-heading h2 {
+  margin: 0;
+}
+
+.modal-content p {
+  margin: 0;
+}
+
+.modal-heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Close button */
+.modal-close {
+  color: black;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}

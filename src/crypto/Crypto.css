@@ -1,0 +1,19 @@
+.crypto-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.crypto-board table {
+  height: 450px;
+  width: 450px;
+}
+
+.crypto-search {
+  margin-bottom: 20px;
+}
+
+.crypto-pagination {
+  margin-top: 20px;
+}
