@@ -21,7 +21,8 @@ const Accordian = () => {
 };
 
 const AccordianElement = ({ element, setElements }) => {
-  const handleOnChange = () => {
+  // Updating status of specific object in an Array
+  const handleOnClick = () => {
     setElements((prevElements) =>
       prevElements.map((el) =>
         el.id === element.id ? { ...el, isExpanded: !el.isExpanded } : el
@@ -33,7 +34,7 @@ const AccordianElement = ({ element, setElements }) => {
     <p className="acc-element">
       <div className="dupa">
         {element.title}{" "}
-        <button onClick={handleOnChange}>
+        <button onClick={handleOnClick}>
           {element.isExpanded ? "Hide" : "Expand"}
         </button>
       </div>

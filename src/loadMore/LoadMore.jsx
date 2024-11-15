@@ -9,6 +9,7 @@ const LoadMore = () => {
   const [skip, setSkip] = useState(0);
 
   const getProducts = async () => {
+    // Fetch with params
     const url = new URL(API_URL);
     url.searchParams.append("limit", limitProducts);
     url.searchParams.append("skip", skip * limitProducts);
@@ -17,6 +18,7 @@ const LoadMore = () => {
       const response = await fetch(url);
       const result = await response.json();
 
+      // add new items to an array
       if (skip) {
         setProducts((prev) => [...prev, ...result.products]);
       } else {

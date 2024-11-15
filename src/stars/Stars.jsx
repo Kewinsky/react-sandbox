@@ -7,18 +7,6 @@ const Stars = () => {
   const [rate, setRate] = useState(0);
   const [hoveredStar, setHoveredStar] = useState(0);
 
-  const handleMouseEnter = (starIndex) => {
-    setHoveredStar(starIndex);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredStar(0);
-  };
-
-  const handleClick = (starIndex) => {
-    setRate(starIndex);
-  };
-
   return (
     <div>
       {Array(numberOfStars)
@@ -29,13 +17,14 @@ const Stars = () => {
           return (
             <span
               key={i}
-              onClick={() => handleClick(starIndex)}
-              onMouseEnter={() => handleMouseEnter(starIndex)}
-              onMouseLeave={handleMouseLeave}
+              onClick={() => setRate(starIndex)}
+              onMouseEnter={() => setHoveredStar(starIndex)}
+              onMouseLeave={() => setHoveredStar(0)}
               style={{
                 cursor: "pointer",
               }}
             >
+              {/* this handles displaying proper star */}
               {starIndex <= (hoveredStar || rate) ? "★" : "☆"}
             </span>
           );

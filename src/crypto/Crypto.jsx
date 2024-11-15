@@ -26,11 +26,12 @@ const Crypto = () => {
     }
   };
 
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentData = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  // Pagination - separate method to set current page with additional check
   const paginate = (pageNumber) => {
     if (pageNumber > 0 && pageNumber <= totalPages) {
       setCurrentPage(pageNumber);
@@ -40,6 +41,11 @@ const Crypto = () => {
   useEffect(() => {
     getInfo();
   }, []);
+
+  // get back to first page
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search]);
 
   return (
     <div>

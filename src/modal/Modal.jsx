@@ -3,6 +3,7 @@ import "./Modal.css";
 
 const Modal = () => {
   const [isShown, setIsShown] = useState(false);
+
   return (
     <div>
       <button onClick={() => setIsShown(!isShown)}>Show modal</button>

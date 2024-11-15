@@ -34,6 +34,7 @@ const Countries = () => {
     }
   };
 
+  // Pagination
   const totalPages = Math.ceil(countries.length / itemsPerPage);
   const indexOfFirstElement = (currentPage - 1) * itemsPerPage;
   const indexOfLastElement = indexOfFirstElement + itemsPerPage;
@@ -57,7 +58,11 @@ const Countries = () => {
             <CountryElement key={item.cca2} country={item} />
           ))}
       </table>
-      <Pagination totalPages={totalPages} setCurrentPage={setCurrentPage} />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   );
 };
@@ -91,9 +96,14 @@ const Dropdown = ({ capitals, setCapital }) => {
   );
 };
 
-const Pagination = ({ totalPages, setCurrentPage }) => {
+const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   return (
     <div>
+      <button
+        onClick={() => currentPage > 1 && setCurrentPage((prev) => prev - 1)}
+      >
+        {"<"}
+      </button>
       {Array(totalPages)
         .fill(null)
         .map((_, i) => (
@@ -101,6 +111,13 @@ const Pagination = ({ totalPages, setCurrentPage }) => {
             {i + 1}
           </button>
         ))}
+      <button
+        onClick={() =>
+          currentPage < totalPages && setCurrentPage((prev) => prev + 1)
+        }
+      >
+        {">"}
+      </button>
     </div>
   );
 };

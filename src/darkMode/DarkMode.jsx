@@ -1,10 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./DarkMode.css";
+import ToggleComponent from "./ToggleComponent";
+import H1Component from "./H1Component";
 
+// React Context
 const ThemeContext = React.createContext();
 
 const DarkMode = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -25,27 +28,5 @@ const DarkMode = () => {
   );
 };
 
-const ToggleComponent = () => {
-  const { isDark, setIsDark } = useContext(ThemeContext);
-
-  return (
-    <label>
-      <input
-        type="checkbox"
-        checked={isDark}
-        onClick={() => setIsDark(!isDark)}
-      />
-      Switch to {isDark ? "Bright" : "Dark"} Mode
-    </label>
-  );
-};
-
-const H1Component = () => {
-  return (
-    <div>
-      <h1>Pokasz cyce</h1>
-    </div>
-  );
-};
-
 export default DarkMode;
+export { ThemeContext };

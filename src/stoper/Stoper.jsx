@@ -3,22 +3,20 @@ import React, { useCallback, useEffect, useState } from "react";
 const Stoper = () => {
   const [time, setTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [isResetActive, setIsResetActive] = useState(false);
 
   const handleStart = useCallback(() => {
     setIsActive(true);
-    setIsResetActive(true);
   }, []);
 
   const handleStop = useCallback(() => {
     setIsActive(false);
-    setIsResetActive(false);
   }, []);
 
   const handleReset = useCallback(() => {
     setTime(0);
   }, []);
 
+  // Using setTimeout
   useEffect(() => {
     if (isActive) {
       setTimeout(() => {
@@ -36,7 +34,7 @@ const Stoper = () => {
       <button onClick={handleStop} disabled={!isActive}>
         Stop
       </button>
-      <button onClick={handleReset} disabled={isResetActive || !time}>
+      <button onClick={handleReset} disabled={isActive || !time}>
         Reset
       </button>
     </>

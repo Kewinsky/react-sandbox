@@ -8,17 +8,20 @@ const Notes = () => {
     { id: uuidv4(), value: "world", isEditing: false },
   ]);
 
+  // Add item to an array
   const handleAddNote = () => {
     const newNote = { id: uuidv4(), value: "New note", isEditing: false };
     setNotes([...notes, newNote]);
   };
 
+  // Delete item from an array
   const handleDeleteNote = (idToDelete) => {
     const updatedNotes = notes.filter((note) => note.id !== idToDelete);
 
     setNotes(updatedNotes);
   };
 
+  // Update item from an array (content, flag)
   const handleSaveNote = (idToSave, newContent) => {
     const updatedNotes = notes.map((note) =>
       note.id === idToSave
@@ -29,6 +32,7 @@ const Notes = () => {
     setNotes(updatedNotes);
   };
 
+  // Update item from an array (flag)
   const handleEditNote = (idToEdit) => {
     const updatedNotes = notes.map((note) =>
       note.id === idToEdit ? { ...note, isEditing: true } : note

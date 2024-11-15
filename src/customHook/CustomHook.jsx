@@ -4,6 +4,7 @@ import useFetch from "./useFetch";
 const API_URL = "https://dummyjson.com/products?limit=10";
 
 const CustomHook = () => {
+  // Custom Hook
   const { data, error, pending } = useFetch(API_URL);
 
   return (

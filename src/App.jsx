@@ -21,6 +21,7 @@ import Tabs from "./tabs/Tabs";
 import TicTacToe from "./tictactoe/TicTacToe";
 import Weather from "./weather/Weather";
 import Wordly from "./wordly/Wordly";
+import Sandbox from "./sandbox/Sandbox";
 
 const apps = [
   "accordian",
@@ -60,6 +61,7 @@ const App = () => {
         ))}
       </select>
       <SwitchExample app={app} />
+      <Sandbox />
     </>
   );
 };

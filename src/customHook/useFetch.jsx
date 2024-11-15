@@ -12,7 +12,7 @@ const useFetch = (url) => {
       const result = await response.json();
 
       // only to simulate retriving an error from API
-      //   throw new Error("Wrong endpoint");
+      // throw new Error("Wrong endpoint");
 
       // only to simulate latency when fetching data from API
       setTimeout(() => {

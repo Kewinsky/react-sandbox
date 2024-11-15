@@ -34,6 +34,7 @@ const ImageSlider = () => {
     getPhotos();
   }, []);
 
+  // Using interval
   useEffect(() => {
     const timer = setInterval(() => {
       goToNext();

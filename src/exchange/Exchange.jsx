@@ -21,7 +21,6 @@ const Exchange = () => {
   const [currencyB, setCurrencyB] = useState("EUR");
   const [ratio, setRatio] = useState(1);
   const [amount, setAmount] = useState(100);
-  const [result, setResult] = useState(0);
 
   const getRatio = async () => {
     try {
@@ -43,9 +42,7 @@ const Exchange = () => {
     getRatio();
   }, [currencyA, currencyB]);
 
-  useEffect(() => {
-    setResult((amount * ratio).toFixed(2));
-  }, [amount, ratio]);
+  const result = (amount * ratio).toFixed(2);
 
   return (
     <div>
@@ -60,7 +57,7 @@ const Exchange = () => {
       />
       {result > 0 && (
         <p>
-          Result: {result} {currencyB}
+          {amount} {currencyA} = {result} {currencyB}
         </p>
       )}
     </div>

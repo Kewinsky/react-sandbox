@@ -26,6 +26,7 @@ const Tabs = () => {
           <p
             key={tab.label}
             onClick={() => setCurrentTabIndex(i)}
+            // Handle active flag
             className={`tab ${currentTabIndex === i ? "active" : ""}`}
           >
             {tab.label}
