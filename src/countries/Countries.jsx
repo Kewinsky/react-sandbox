@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./Countries.css";
 
 const API_URL = "https://restcountries.com/v3.1";
@@ -17,14 +17,16 @@ const capitals = [
 ];
 
 const Countries = () => {
+  const itemsPerPage = 10;
   const [countries, setCountries] = useState([]);
   const [capital, setCapital] = useState("all");
+  const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 15;
 
   const fetchCountries = async () => {
     const url =
       capital !== "all" ? API_URL + `/capital/${capital}` : API_URL + "/all";
+
     try {
       const response = await fetch(url);
       const result = await response.json();
@@ -34,11 +36,25 @@ const Countries = () => {
     }
   };
 
+  // Filtering countries by search input or chosen capital
+  // Sort by country name
+  const filteredData = useMemo(() => {
+    return countries
+      .filter(
+        (country) =>
+          country.name.common.toLowerCase().startsWith(search.toLowerCase()) ||
+          country.capital === capital
+      )
+      .sort((a, b) => a.name.common.localeCompare(b.name.common));
+  }, [countries, search, capital]);
+
   // Pagination
-  const totalPages = Math.ceil(countries.length / itemsPerPage);
-  const indexOfFirstElement = (currentPage - 1) * itemsPerPage;
-  const indexOfLastElement = indexOfFirstElement + itemsPerPage;
-  const currentData = countries.slice(indexOfFirstElement, indexOfLastElement);
+  // Calc total pages according to the filtered data
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const currentData = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredData.slice(start, start + itemsPerPage);
+  }, [filteredData, currentPage, itemsPerPage]);
 
   useEffect(() => {
     fetchCountries();
@@ -46,79 +62,71 @@ const Countries = () => {
 
   return (
     <>
-      <Dropdown capitals={capitals} setCapital={setCapital} />
+      <div className="mb-5 flex flex-col w-40">
+        <input
+          type="text"
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search country"
+          className="ml-1"
+        />
+        <select onChange={(e) => setCapital(e.target.value)}>
+          <option value="all" defaultValue="all">
+            Select capital
+          </option>
+          {capitals &&
+            capitals.map((capital) => (
+              <option key={capital} value={capital}>
+                {capital}
+              </option>
+            ))}
+        </select>
+      </div>
+
       <table>
         <tr>
           <th>Flag</th>
           <th>Country</th>
           <th>Capital</th>
         </tr>
-        {countries &&
-          currentData.map((item) => (
-            <CountryElement key={item.cca2} country={item} />
+        {currentData &&
+          currentData.map((country) => (
+            <tr key={country.name.common}>
+              <td>{country.flag}</td>
+              <td>{country.name.common}</td>
+              <td>{country.capital ?? "-"}</td>
+            </tr>
           ))}
       </table>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      <div className="mt-5">
+        <button
+          onClick={() => currentPage > 1 && setCurrentPage((prev) => prev - 1)}
+        >
+          {"<-"}
+        </button>
+        {Array(totalPages)
+          .fill(null)
+          .map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`mr-1 ${
+                currentPage === i + 1
+                  ? "text-2xl text-green-400 animate-bounce"
+                  : ""
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        <button
+          onClick={() =>
+            currentPage < totalPages && setCurrentPage((prev) => prev + 1)
+          }
+        >
+          {"->"}
+        </button>
+      </div>
     </>
-  );
-};
-
-const CountryElement = ({ country }) => {
-  return (
-    <tr className="tr-countries">
-      <td>{country.flag}</td>
-      <td>{country.name.common}</td>
-      <td>{country.capital}</td>
-    </tr>
-  );
-};
-
-const Dropdown = ({ capitals, setCapital }) => {
-  return (
-    <select
-      name="capitals"
-      id="capitals"
-      onChange={(e) => setCapital(e.target.value)}
-    >
-      <option value="all" selected>
-        Select capital
-      </option>
-      {capitals.map((capital, i) => (
-        <option key={i} value={capital}>
-          {capital}
-        </option>
-      ))}
-    </select>
-  );
-};
-
-const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
-  return (
-    <div>
-      <button
-        onClick={() => currentPage > 1 && setCurrentPage((prev) => prev - 1)}
-      >
-        {"<"}
-      </button>
-      {Array(totalPages)
-        .fill(null)
-        .map((_, i) => (
-          <button key={i} onClick={() => setCurrentPage(i + 1)}>
-            {i + 1}
-          </button>
-        ))}
-      <button
-        onClick={() =>
-          currentPage < totalPages && setCurrentPage((prev) => prev + 1)
-        }
-      >
-        {">"}
-      </button>
-    </div>
   );
 };
 

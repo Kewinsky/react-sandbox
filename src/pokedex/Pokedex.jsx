@@ -1,41 +1,20 @@
-import React, { useEffect, useState } from "react";
-import "./Pokedex.css";
+import { useEffect, useState } from "react";
 
-const API_URL = "https://pokeapi.co/api/v2/pokemon";
+const API = "https://pokeapi.co/api/v2/pokemon/ditto";
 
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState([]);
 
-  const getPokemons = async () => {
-    const response = await fetch(API_URL);
-
-    const listOfPokemons = await response.json();
-
-    getPokemonDetails(listOfPokemons.results);
-  };
-
-  const getPokemonDetails = async (pokemons) => {
-    const pokemonsWithDetails = [];
-    for (const pokemon of pokemons) {
-      const response = await fetch(API_URL + `/${pokemon.name}`);
-      const result = await response.json();
-      pokemonsWithDetails.push(result);
-    }
-    setPokemons(pokemonsWithDetails);
+  const fetchPokemnos = async () => {
+    const response = await fetch(API);
+    const result = await response.json();
+    console.log(result);
   };
 
   useEffect(() => {
-    getPokemons();
-    console.log(pokemons);
+    fetchPokemnos();
   }, []);
-
-  return (
-    <div>
-      {pokemons.map((pokemon, i) => (
-        <p key={i}>{pokemon.name}</p>
-      ))}
-    </div>
-  );
+  return <div>Pokedex</div>;
 };
 
 export default Pokedex;

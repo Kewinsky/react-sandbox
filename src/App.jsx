@@ -22,6 +22,7 @@ import TicTacToe from "./tictactoe/TicTacToe";
 import Weather from "./weather/Weather";
 import Wordly from "./wordly/Wordly";
 import Sandbox from "./sandbox/Sandbox";
+import MemoryGame from "./memoryGame/MemoryGame";
 
 const apps = [
   "accordian",
@@ -33,6 +34,7 @@ const apps = [
   "githubFinder",
   "imageSlider",
   "loadMore",
+  "memoryGame",
   "modal",
   "notes",
   "passwordGenerator",
@@ -87,6 +89,8 @@ const SwitchExample = ({ app }) => {
         return <ImageSlider />;
       case "loadMore":
         return <LoadMore />;
+      case "memoryGame":
+        return <MemoryGame />;
       case "modal":
         return <Modal />;
       case "notes":
