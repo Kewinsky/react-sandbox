@@ -28,113 +28,71 @@ import Quiz from "./quiz/Quiz";
 import Typewriter from "./typewriter/Typewriter";
 import ContactBook from "./contactBook/ContactBook";
 
-const apps = [
-  "accordian",
-  "countries",
-  "contactBook",
-  "crypto",
-  "customHook",
-  "darkMode",
-  "dragndrop",
-  "exchange",
-  "githubFinder",
-  "imageSlider",
-  "loadMore",
-  "memoryGame",
-  "modal",
-  "notes",
-  "passwordGenerator",
-  "pokedex",
-  "qrGenerator",
-  "scrollIndicator",
-  "stars",
-  "stoper",
-  "tabs",
-  "ticTacToe",
-  "typewriter",
-  "weather",
-  "wordly",
-  "quiz",
-];
+const appComponents = {
+  accordian: Accordian,
+  countries: Countries,
+  contactBook: ContactBook,
+  crypto: Crypto,
+  customHook: CustomHook,
+  darkMode: DarkMode,
+  dragndrop: DragNDrop,
+  exchange: Exchange,
+  githubFinder: GithubFinder,
+  imageSlider: ImageSlider,
+  loadMore: LoadMore,
+  memoryGame: MemoryGame,
+  modal: Modal,
+  notes: Notes,
+  passwordGenerator: PasswordGenerator,
+  pokedex: Pokedex,
+  qrGenerator: QrGenerator,
+  scrollIndicator: ScrollIndicator,
+  stars: Stars,
+  stoper: Stoper,
+  tabs: Tabs,
+  ticTacToe: TicTacToe,
+  typewriter: Typewriter,
+  weather: Weather,
+  wordly: Wordly,
+  quiz: Quiz,
+};
 
 const App = () => {
-  const [app, setApp] = useState("");
+  const [selectedApp, setSelectedApp] = useState("");
+
+  const SelectedComponent = appComponents[selectedApp];
 
   return (
-    <>
-      <select value={app} onChange={(e) => setApp(e.target.value)}>
+    <div className="flex flex-col items-center justify-center p-5">
+      <h1 className="text-3xl font-bold mb-5">React Sandbox</h1>
+      <p className="text-lg mb-3">
+        Select an app to explore different React functionalities.
+      </p>
+
+      <select
+        value={selectedApp}
+        onChange={(e) => setSelectedApp(e.target.value)}
+        className="p-2 border rounded-md shadow-md focus:ring-2 focus:ring-blue-400"
+      >
         <option value="">Select an App</option>
-        {apps.map((app) => (
+        {Object.keys(appComponents).map((app) => (
           <option key={app} value={app}>
             {app.charAt(0).toUpperCase() + app.slice(1)}
           </option>
         ))}
       </select>
-      <SwitchExample app={app} />
+
+      <div className="mt-5 w-full justify-items-center p-5 shadow-lg rounded-lg">
+        {SelectedComponent ? (
+          <SelectedComponent />
+        ) : (
+          <p>Select an app to load</p>
+        )}
+      </div>
+
       <Sandbox />
-    </>
+    </div>
   );
-};
-
-const SwitchExample = ({ app }) => {
-  const renderContent = () => {
-    switch (app) {
-      case "accordian":
-        return <Accordian />;
-      case "countries":
-        return <Countries />;
-      case "contactBook":
-        return <ContactBook />;
-      case "crypto":
-        return <Crypto />;
-      case "customHook":
-        return <CustomHook />;
-      case "darkMode":
-        return <DarkMode />;
-      case "dragndrop":
-        return <DragNDrop />;
-      case "exchange":
-        return <Exchange />;
-      case "githubFinder":
-        return <GithubFinder />;
-      case "imageSlider":
-        return <ImageSlider />;
-      case "loadMore":
-        return <LoadMore />;
-      case "memoryGame":
-        return <MemoryGame />;
-      case "modal":
-        return <Modal />;
-      case "notes":
-        return <Notes />;
-      case "passwordGenerator":
-        return <PasswordGenerator />;
-      case "pokedex":
-        return <Pokedex />;
-      case "qrGenerator":
-        return <QrGenerator />;
-      case "scrollIndicator":
-        return <ScrollIndicator />;
-      case "stars":
-        return <Stars />;
-      case "stoper":
-        return <Stoper />;
-      case "tabs":
-        return <Tabs />;
-      case "ticTacToe":
-        return <TicTacToe />;
-      case "typewriter":
-        return <Typewriter />;
-      case "weather":
-        return <Weather />;
-      case "wordly":
-        return <Wordly />;
-      case "quiz":
-        return <Quiz />;
-    }
-  };
-
-  return <>{renderContent()}</>;
 };
 
 export default App;
