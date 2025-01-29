@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Weather.css";
 
 const Weather = () => {
   const url = "https://open-weather13.p.rapidapi.com/city/";
+  const apiKey = import.meta.env.VITE_WEATHER_KEY;
+
   const options = {
     method: "GET",
     headers: {
-      "x-rapidapi-key": "e47af18868msh2c86cfe4c639ff9p1f37e6jsn1d9a08884e78",
+      "x-rapidapi-key": apiKey,
       "x-rapidapi-host": "open-weather13.p.rapidapi.com",
     },
   };
