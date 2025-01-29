@@ -23,13 +23,19 @@ import Weather from "./weather/Weather";
 import Wordly from "./wordly/Wordly";
 import Sandbox from "./sandbox/Sandbox";
 import MemoryGame from "./memoryGame/MemoryGame";
+import DragNDrop from "./dragNdrop/DragNDrop";
+import Quiz from "./quiz/Quiz";
+import Typewriter from "./typewriter/Typewriter";
+import ContactBook from "./contactBook/ContactBook";
 
 const apps = [
   "accordian",
   "countries",
+  "contactBook",
   "crypto",
   "customHook",
   "darkMode",
+  "dragndrop",
   "exchange",
   "githubFinder",
   "imageSlider",
@@ -44,9 +50,11 @@ const apps = [
   "stars",
   "stoper",
   "tabs",
-  "tictactoe",
+  "ticTacToe",
+  "typewriter",
   "weather",
   "wordly",
+  "quiz",
 ];
 
 const App = () => {
@@ -75,12 +83,16 @@ const SwitchExample = ({ app }) => {
         return <Accordian />;
       case "countries":
         return <Countries />;
+      case "contactBook":
+        return <ContactBook />;
       case "crypto":
         return <Crypto />;
       case "customHook":
         return <CustomHook />;
       case "darkMode":
         return <DarkMode />;
+      case "dragndrop":
+        return <DragNDrop />;
       case "exchange":
         return <Exchange />;
       case "githubFinder":
@@ -109,12 +121,16 @@ const SwitchExample = ({ app }) => {
         return <Stoper />;
       case "tabs":
         return <Tabs />;
-      case "tictactoe":
+      case "ticTacToe":
         return <TicTacToe />;
+      case "typewriter":
+        return <Typewriter />;
       case "weather":
         return <Weather />;
       case "wordly":
         return <Wordly />;
+      case "quiz":
+        return <Quiz />;
     }
   };
 
