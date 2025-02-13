@@ -197,6 +197,7 @@ const InputFieldWrapper = ({ children }) => {
 };
 
 const UserTile = ({ user, setUsers, userToUpdate, setUserToUpdate }) => {
+  // HINT: updating specific property of the object
   const handleOnExpand = (u) => {
     const updatedUser = { ...u, isExpanded: !u.isExpanded };
 

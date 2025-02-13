@@ -25,8 +25,11 @@ import Sandbox from "./sandbox/Sandbox";
 import MemoryGame from "./memoryGame/MemoryGame";
 import DragNDrop from "./dragNdrop/DragNDrop";
 import Quiz from "./quiz/Quiz";
+import Tree from "./tree/Tree";
 import Typewriter from "./typewriter/Typewriter";
 import ContactBook from "./contactBook/ContactBook";
+import GithubRobotGenerator from "./githubRobotGenerator/GithubRobotGenerator";
+import Todo from "./todo/Todo";
 
 const appComponents = {
   accordian: Accordian,
@@ -55,6 +58,9 @@ const appComponents = {
   weather: Weather,
   wordly: Wordly,
   quiz: Quiz,
+  tree: Tree,
+  githubRobotGenerator: GithubRobotGenerator,
+  todo: Todo,
 };
 
 const App = () => {
