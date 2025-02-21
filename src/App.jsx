@@ -30,6 +30,9 @@ import Typewriter from "./typewriter/Typewriter";
 import ContactBook from "./contactBook/ContactBook";
 import GithubRobotGenerator from "./githubRobotGenerator/GithubRobotGenerator";
 import Todo from "./todo/Todo";
+import Form from "./form/Form";
+import SortTable from "./sortTable/SortTable";
+import WordOmitter from "./omitWords/OmitWords";
 
 const appComponents = {
   accordian: Accordian,
@@ -61,6 +64,9 @@ const appComponents = {
   tree: Tree,
   githubRobotGenerator: GithubRobotGenerator,
   todo: Todo,
+  form: Form,
+  sortTable: SortTable,
+  wordOmitter: WordOmitter,
 };
 
 const App = () => {
