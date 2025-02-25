@@ -33,6 +33,7 @@ import Todo from "./todo/Todo";
 import Form from "./form/Form";
 import SortTable from "./sortTable/SortTable";
 import WordOmitter from "./omitWords/OmitWords";
+import Calculator from "./calculator/Calculator";
 
 const appComponents = {
   accordian: Accordian,
@@ -67,6 +68,7 @@ const appComponents = {
   form: Form,
   sortTable: SortTable,
   wordOmitter: WordOmitter,
+  calculator: Calculator,
 };
 
 const App = () => {
